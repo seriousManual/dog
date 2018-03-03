@@ -1,7 +1,4 @@
 import {combineReducers} from 'redux'
+import {reducer as dice} from './dice'
 
-function dummyReducer (state, action) {
-  return {}
-}
-
-export default combineReducers({dummyReducer})
+export default combineReducers({dice})

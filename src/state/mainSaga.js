@@ -1,13 +1,11 @@
 import {all} from 'redux-saga/effects'
 
-function* dummySaga() {
-
-}
+import {gameLoop} from './game.js'
 
 export default function () {
   return function* () {
     yield all([
-      dummySaga()
+      gameLoop()
     ])
   }
 }
