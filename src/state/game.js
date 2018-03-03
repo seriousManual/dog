@@ -1,6 +1,8 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
 import { delay } from "redux-saga" 
 import { updateDiAction } from "./dice"
+
+import {highlightPiece, unHighlightPieces} from './pieces'
 
 export function* gameLoop() {
     while (true) {

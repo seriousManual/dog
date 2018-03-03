@@ -22,7 +22,7 @@ export function highlightPiece(pieceId) {
   return createAction(ACTION_HIGHLIGHT_PIECE, {pieceId})
 }
 
-export function highlightPieces() {
+export function unHighlightPieces() {
   return createAction(ACTION_UNHIGHLIGHT_PIECES)
 }
 
