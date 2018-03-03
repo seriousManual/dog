@@ -1,9 +1,11 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
 import { delay } from "redux-saga" 
 import { updateDiAction } from "./dice"
 import { updateTurnAction, updatePlayerAction } from "./gameState"
 import { getCurrentPlayerIndex, getCurrentTurn } from './selectors'
 import { select } from "redux-saga/effects"
+
+import {highlightPiece, unHighlightPieces} from './pieces'
 
 export function* gameLoop() {
     while (true) {
@@ -16,9 +18,8 @@ export function* gameLoop() {
     var nextTurnIndex = yield call(nextTurn);
     yield put(updateTurnAction(nextTurnIndex));
     // yield wait until roll dice pushed
-    // update dice - > function here
     yield put(updateDiAction(generateDice()));
-    // dispatch action: updateDiAction
+    yield delay(3000);
     // dispatch action: highlight possible moves
     // yield wait for choice    
     // dispatch action: unhighlight
