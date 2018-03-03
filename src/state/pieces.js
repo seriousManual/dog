@@ -7,6 +7,8 @@ export const PIECE_STATE_HOME = 'piece_state_home'
 export const ACTION_ADD_PIECE = 'piece_add_piece'
 export const ACTION_SET_STATE = 'piece_set_state'
 export const ACTION_SET_INDEX = 'piece_set_index'
+export const ACTION_HIGHLIGHT_PIECE = 'piece_highlight_piece'
+export const ACTION_UNHIGHLIGHT_PIECES = 'piece_unhighlight_pieces'
 
 export function setState(pieceId, state) {
   return createAction(ACTION_SET_STATE, {pieceId, state})
@@ -16,25 +18,28 @@ export function setIndex(pieceId, index) {
   return createAction(ACTION_SET_INDEX, {pieceId, index})
 }
 
+export function highlightPiece(pieceId) {
+  return createAction(ACTION_HIGHLIGHT_PIECE, {pieceId})
+}
+
+export function highlightPieces() {
+  return createAction(ACTION_UNHIGHLIGHT_PIECES)
+}
+
 function getInitialState() {
-  return [
-    {pieceId: 0, index: null, state: PIECE_STATE_INACTIVE, player: 1},
-    {pieceId: 1, index: null, state: PIECE_STATE_INACTIVE, player: 1},
-    {pieceId: 2, index: null, state: PIECE_STATE_INACTIVE, player: 1},
-    {pieceId: 3, index: null, state: PIECE_STATE_INACTIVE, player: 1},
-    {pieceId: 4, index: null, state: PIECE_STATE_INACTIVE, player: 2},
-    {pieceId: 5, index: null, state: PIECE_STATE_INACTIVE, player: 2},
-    {pieceId: 6, index: null, state: PIECE_STATE_INACTIVE, player: 2},
-    {pieceId: 7, index: null, state: PIECE_STATE_INACTIVE, player: 2},
-    {pieceId: 8, index: null, state: PIECE_STATE_INACTIVE, player: 3},
-    {pieceId: 9, index: null, state: PIECE_STATE_INACTIVE, player: 3},
-    {pieceId: 10, index: null, state: PIECE_STATE_INACTIVE, player: 3},
-    {pieceId: 11, index: null, state: PIECE_STATE_INACTIVE, player: 3},
-    {pieceId: 12, index: null, state: PIECE_STATE_INACTIVE, player: 4},
-    {pieceId: 13, index: null, state: PIECE_STATE_INACTIVE, player: 4},
-    {pieceId: 14, index: null, state: PIECE_STATE_INACTIVE, player: 4},
-    {pieceId: 15, index: null, state: PIECE_STATE_INACTIVE, player: 4}
-  ]
+  let retVal = []
+
+  for (var i = 0; i < 3; i++) {
+    retVal.push({
+      state: PIECE_STATE_INACTIVE,
+      pieceId: i,
+      index: null,
+      playerId: Math.floor(i / 4) + 1,
+      highlight: false
+    })
+  }
+
+  return retVal
 }
 
 export default function reducer(state=getInitialState(), action) {
@@ -51,6 +56,20 @@ export default function reducer(state=getInitialState(), action) {
         if (piece.pieceId !== action.pieceId) return piece
 
         return {...piece, state: action.state}
+      })
+
+    case ACTION_HIGHLIGHT_PIECE:
+      return state.map(piece => {
+        if (piece.pieceId !== action.pieceId) return piece
+
+        return {...piece, highlight: true}
+      })
+
+    case ACTION_UNHIGHLIGHT_PIECES:
+      return state.map(piece => {
+        if (!piece.highlight) return piece
+
+        return {...piece, highlight: false}
       })
 
     default:

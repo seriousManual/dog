@@ -6,10 +6,8 @@ export function* gameLoop() {
     while (true) {
     // dispatch action: next player
     // yield wait until roll dice pushed
-    // update dice - > function here
-    yield delay(1000);
     yield put(updateDiAction(generateDice()));
-    // dispatch action: updateDiAction
+    yield delay(3000);
     // dispatch action: highlight possible moves
     // yield wait for choice    
     // dispatch action: unhighlight
