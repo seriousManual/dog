@@ -5,7 +5,7 @@ import { updateTurnAction, updatePlayerAction } from "./gameState"
 import { getCurrentPlayerIndex, getCurrentTurn } from './selectors'
 
 import {highlightPiece, unHighlightPieces} from './pieces'
-import {movement} from './pieces'
+import {movement, highlightPossibleMoves} from './pieces'
 
 export function* gameLoop() {
     while (true) {
