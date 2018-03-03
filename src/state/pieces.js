@@ -29,7 +29,7 @@ export function unHighlightPieces() {
 function getInitialState() {
   let retVal = []
 
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < 16; i++) {
     retVal.push({
       state: PIECE_STATE_INACTIVE,
       pieceId: i,
