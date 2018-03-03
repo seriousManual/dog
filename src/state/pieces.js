@@ -88,3 +88,27 @@ export function* movement(pieceId, steps) {
     yield delay(1000)
   }
 }
+
+export function* highlightPossibleMoves(playerId, diceValue) {
+  let pieces = yield select(state => state.pieces.filter(piece => piece.playerId === playerId))
+
+  for (let i = 0; i < pieces.length; i++) {
+    let piece = pieces[i]
+
+    switch (piece.state) {
+      case PIECE_STATE_INACTIVE:
+        if (diceValue === 6) {
+          yield put(highlightPiece(piece.pieceId))
+        }
+        break
+
+      case PIECE_STATE_ACTIVE:
+        yield put(highlightPiece(piece.pieceId))
+        break
+
+      case PIECE_STATE_HOME:
+        yield put(highlightPiece(piece.pieceId))  // <-- this needs some love as we have to make sure that we can actually move inside the home
+        break
+    }
+  }
+}
