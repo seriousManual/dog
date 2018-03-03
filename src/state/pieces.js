@@ -1,3 +1,6 @@
+import {put, select} from 'redux-saga/effects'
+import {delay} from 'redux-saga'
+
 import createAction from './util/createAction'
 
 export const PIECE_STATE_INACTIVE = 'piece_state_inactive'
@@ -74,5 +77,14 @@ export default function reducer(state=getInitialState(), action) {
 
     default:
       return state
+  }
+}
+
+export function* movement(pieceId, steps) {
+  let {index} = yield select(state => state.pieces.find(piece => piece.pieceId === pieceId))
+
+  for (let i = 0; i < steps; i++) {
+    yield put(setIndex(pieceId, (index + i) % 40))
+    yield delay(1000)
   }
 }

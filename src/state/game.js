@@ -1,11 +1,11 @@
-import { put, call } from 'redux-saga/effects'
+import { put, call, select } from 'redux-saga/effects'
 import { delay } from "redux-saga" 
 import { updateDiAction } from "./dice"
 import { updateTurnAction, updatePlayerAction } from "./gameState"
 import { getCurrentPlayerIndex, getCurrentTurn } from './selectors'
-import { select } from "redux-saga/effects"
 
 import {highlightPiece, unHighlightPieces} from './pieces'
+import {movement} from './pieces'
 
 export function* gameLoop() {
     while (true) {
