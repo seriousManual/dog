@@ -1,9 +1,9 @@
 function getInitialState() {
   return [
-    {color: '#f00', name: 'russell', cards: []},
-    {color: '#00f', name: 'snyder', cards: []},
-    {color: '#f0f', name: 'schneider', cards: []},
-    {color: '#ff0', name: 'karussell', cards: []}
+    {playerId: 1, color: '#f00', name: 'russell', cards: []},
+    {playerId: 2, color: '#00f', name: 'snyder', cards: []},
+    {playerId: 3, color: '#f0f', name: 'schneider', cards: []},
+    {playerId: 4, color: '#ff0', name: 'karussell', cards: []}
   ]
 }
 
