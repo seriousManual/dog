@@ -21,6 +21,5 @@ export function* gameLoop() {
 }
 
 function generateDice() {
-    console.log("yoyoyoy");
-    return Math.ceil(Math.random() * 5)
+    return Math.floor(Math.random() * 6) + 1
 }
