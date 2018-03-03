@@ -12,6 +12,7 @@ export const ACTION_SET_STATE = 'piece_set_state'
 export const ACTION_SET_INDEX = 'piece_set_index'
 export const ACTION_HIGHLIGHT_PIECE = 'piece_highlight_piece'
 export const ACTION_UNHIGHLIGHT_PIECES = 'piece_unhighlight_pieces'
+export const ACTION_SELECT_PIECE = 'piece_select'
 
 export function setState(pieceId, state) {
   return createAction(ACTION_SET_STATE, {pieceId, state})
@@ -27,6 +28,10 @@ export function highlightPiece(pieceId) {
 
 export function unHighlightPieces() {
   return createAction(ACTION_UNHIGHLIGHT_PIECES)
+}
+
+export function selectPiece(pieceId) {
+  return createAction(ACTION_SELECT_PIECE, {pieceId})
 }
 
 function getInitialState() {
