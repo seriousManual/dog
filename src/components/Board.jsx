@@ -12,7 +12,6 @@ class Board extends Component {
     let startPieceColorIndex = 0;
 
     let pieces = START_SPACES_MAP.map((data, i) => {
-      console.log(i % 4);
       if (i % 4 == 0 && i !== 0) {
         startPieceColorIndex++
       }

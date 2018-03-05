@@ -14,7 +14,7 @@ export function* gameLoop() {
 
     var nextPlayerIndex = yield call(nextPlayer);
     yield put(updatePlayerAction(nextPlayerIndex));
-    // if next player is 0 then we are at the next tturn
+    // if next player is 0 then we are at the next turn
     var nextTurnIndex = yield call(nextTurn);
     yield put(updateTurnAction(nextTurnIndex));
     // yield wait until roll dice pushed
@@ -36,11 +36,16 @@ function generateDice() {
 
 function* nextPlayer() {
     var currentPlayerIndex = yield select(getCurrentPlayerIndex);
-    var newIndex = (currentPlayerIndex + 1) % 4;
-    return newIndex;
+    var incrementAndWrap = ++currentPlayerIndex % 4;
+    return incrementAndWrap
 }
 
 function* nextTurn() {
+    var currentPlayerIndex = yield select(getCurrentPlayerIndex);
     var currentTurn = yield select(getCurrentTurn);
-    return currentTurn + 1
+    var newTurnIndex = currentTurn;
+    if (currentPlayerIndex == 0) {
+        newTurnIndex++;
+    }
+    return newTurnIndex;
 }
