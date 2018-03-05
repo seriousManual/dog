@@ -1,3 +1,4 @@
+export const BOARD_SIZE = 550;
 export const COLORS = {
     GREEN: "green",
     RED: "red",
