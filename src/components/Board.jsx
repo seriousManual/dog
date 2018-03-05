@@ -27,11 +27,10 @@ class Board extends Component {
     return (
       <div className="board">
           <svg height={BOARD_SIZE} width={BOARD_SIZE}>
-          {/* {this.props.children} */}
-          {playableSpaces}
-          {startSpaces}
-          {homeSpaces}
-          {pieces}
+            {playableSpaces}
+            {startSpaces}
+            {homeSpaces}
+            {pieces}
           </svg>
 
       </div>

@@ -8,6 +8,11 @@ body {
   margin: 30px auto; 
   display: block;
 }
+.dice {
+  margin: 10px auto; 
+  display: block;
+  text-align: center;
+}
 
 .game-statistics {
   padding: 30px;
